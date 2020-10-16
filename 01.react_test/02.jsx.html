@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jsx</title>
+  </head>
+  <body>
+    <div id="demo1"></div>
+    <div id="demo2"></div>
+    <script src="./files/react.development.js"></script>
+    <script src="./files/react-dom.development.js"></script>
+    <script>
+      // 1. 创建虚拟DOM对象
+      // React.createElement(type, props, children, children...)
+      const vDom2 = React.createElement(
+        "p",
+        {
+          className: "title2",
+          id: "ppp",
+        },
+        "hello ppp~"
+      );
+
+      const vDom1 = React.createElement(
+        "h1",
+        {
+          className: "title1",
+          id: "title",
+        },
+        "hello title~",
+        vDom2
+      );
+
+      // 2. 将虚拟Dom对象渲染到页面指定容器中
+      ReactDOM.render(vDom1, document.getElementById("demo1"));
+    </script>
+    <script src="./files/babel.min.js"></script>
+    <script type="text/babel">
+      // jsx语法
+      // 语法：
+      //   1. 以<开头，如果是html同名元素，会解析html元素，如果不是，会当做组件解析
+      //   2. 在<内部，以{开头，里面代码会当做js代码解析
+      // 作用：用来简化创建虚拟DOM对象
+      // 最终jsx语法会被babel编译成React.createElement语法
+
+      const content = 'hello title2';
+      const title = 'title2';
+
+      const vDom3 = (
+        <h1 className={title} id="title2">
+          {content}
+          <p className="title3">hello ppp2</p>
+        </h1>
+      );
+      ReactDOM.render(vDom3, document.getElementById("demo2"));
+    </script>
+  </body>
+</html>
