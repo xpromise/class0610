@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>react</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 向外暴露 React -->
+    <script src="./files/react.development.js"></script>
+    <!-- 向外暴露 ReactDOM -->
+    <script src="./files/react-dom.development.js"></script>
+    <!-- 引入babel，为了编译react jsx语法，默认情况下不生效 -->
+    <script src="./files/babel.min.js"></script>
+    <!-- type="text/babel" 让babel生效 -->
+    <script type="text/babel">
+      // 1. 创建虚拟DOM对象
+      const vDom = <h1>hello react</h1>;
+      console.log(vDom);
+      // 2. 将虚拟DOM对象添加到页面指定容器中生效
+      ReactDOM.render(vDom, document.getElementById("root"));
+    </script>
+  </body>
+</html>
