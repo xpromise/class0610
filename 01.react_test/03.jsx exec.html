@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jsx</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="./files/react.development.js"></script>
+    <script src="./files/react-dom.development.js"></script>
+    <script src="./files/babel.min.js"></script>
+    <script type="text/babel">
+      const data = ["jQuery", "Boostrap", "Nodejs", "Webpack", "Vue"];
+
+      /*
+        filter 过滤：长度变值不变
+        map 映射：长度不变值变
+        reduce 长度和值都会发生变化
+      */
+      const result = data.map((item, index) => {
+        // 遍历的每一项元素要求唯一的key属性
+        return <li key={index}>{item}</li>;
+      });
+
+      // const data = [
+      //   <li>jQuery</li>,
+      //   <li>Boostrap</li>,
+      // ];
+
+      const vDom = (
+        <ul>
+          {/* React JSX语法默认会展开数组 */}
+          {result}
+        </ul>
+      );
+
+      ReactDOM.render(vDom, document.getElementById("root"));
+    </script>
+  </body>
+</html>
