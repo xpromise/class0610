@@ -25,6 +25,31 @@ export default class App extends Component {
     });
   };
 
+  // 更新todo
+  updateTodo = (id) => {
+    const { todos } = this.state;
+    // 不建议直接修改原数据，建议产生一份全新数据
+    this.setState({
+      todos: todos.map((todo) => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            isChecked: !todo.isChecked,
+          };
+        }
+        return { ...todo };
+      }),
+    });
+  };
+
+  delTodo = (id) => {
+    const { todos } = this.state;
+    // 不建议直接修改原数据，建议产生一份全新数据
+    this.setState({
+      todos: todos.filter((todo) => todo.id !== id),
+    });
+  };
+
   render() {
     // 读取state数据
     const { todos } = this.state;
@@ -40,7 +65,7 @@ export default class App extends Component {
       <div className="container">
         <Header addTodo={this.addTodo} />
         {/* 通过props传递动态数据 */}
-        <List todos={todos} />
+        <List todos={todos} updateTodo={this.updateTodo} delTodo={this.delTodo}/>
         <Footer total={total} checkedNum={checkedNum} />
       </div>
     );
