@@ -14,10 +14,10 @@ export default class Child extends Component {
     sex: '女', 
   }
   
-  // constructor(props) {
-  //   super(props); // props 能在constructor访问props
-  //   console.log(this.props);
-  // }
+  constructor() {
+    super();
+    console.log(this.props);
+  }
 
   render() {
     // 读取props
