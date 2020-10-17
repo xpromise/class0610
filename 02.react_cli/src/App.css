@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.checkbox {
+  margin: 0 10px;
+}
+
+.container {
+  width: 50%;
+  margin: 50px auto;
+  border: 1px solid #999;
+  border-radius: 4px;
+  padding: 10px;
+}

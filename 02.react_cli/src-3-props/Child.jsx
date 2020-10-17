@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export default class Child extends Component {
   // static 静态的：给类定义直接属性和方法
@@ -8,16 +8,16 @@ export default class Child extends Component {
     name: PropTypes.string.isRequired, // 必选属性
     age: PropTypes.number.isRequired,
     sex: PropTypes.string, // 可选属性
-  }
+  };
 
   static defaultProps = {
-    sex: '女', 
-  }
-  
-  constructor() {
-    super();
-    console.log(this.props);
-  }
+    sex: "女",
+  };
+
+  // constructor(props) {
+  //   super(props); // props 能在constructor访问props
+  //   console.log(this.props);
+  // }
 
   render() {
     // 读取props
@@ -41,5 +41,5 @@ export default class Child extends Component {
 // }
 // // 默认值
 // Child.defaultProps = {
-//   sex: '女', 
+//   sex: '女',
 // }

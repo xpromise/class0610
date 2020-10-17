@@ -1,21 +1,31 @@
 import React, { Component } from "react";
-// 引入其他组件
-import Child from "./Child";
+
+import Header from "./views/Header";
+import List from "./views/List";
+import Footer from "./views/Footer";
+
+import "./App.css";
 
 export default class App extends Component {
+  // 初始化状态数据
+  state = {
+    todos: [
+      { id: 1, content: "吃饭", isChecked: false },
+      { id: 2, content: "睡觉", isChecked: true },
+      { id: 3, content: "打豆豆", isChecked: false },
+    ],
+  };
+
   render() {
-    const person = {
-      name: "jack",
-      age: 18,
-      // sex: "男",
-    };
+    // 读取state数据
+    const { todos } = this.state;
 
     return (
-      <div>
-        App...
-        {/* 通过组件标签使用组件 */}
-        {/* <Child name={person.name} age={person.age} sex={person.sex}/> */}
-        <Child {...person} />
+      <div className="container">
+        <Header />
+        {/* 通过props传递动态数据 */}
+        <List todos={todos} />
+        <Footer />
       </div>
     );
   }
