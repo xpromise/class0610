@@ -50,6 +50,27 @@ export default class App extends Component {
     });
   };
 
+  handleCheckAll = (checked) => {
+    const { todos } = this.state;
+    // 不建议直接修改原数据，建议产生一份全新数据
+    this.setState({
+      todos: todos.map((todo) => {
+        return {
+          ...todo,
+          isChecked: checked,
+        };
+      }),
+    });
+  };
+
+  batchDel = () => {
+    const { todos } = this.state;
+    // 不建议直接修改原数据，建议产生一份全新数据
+    this.setState({
+      todos: todos.filter((todo) => !todo.isChecked)
+    })
+  }
+
   render() {
     // 读取state数据
     const { todos } = this.state;
@@ -65,8 +86,17 @@ export default class App extends Component {
       <div className="container">
         <Header addTodo={this.addTodo} />
         {/* 通过props传递动态数据 */}
-        <List todos={todos} updateTodo={this.updateTodo} delTodo={this.delTodo}/>
-        <Footer total={total} checkedNum={checkedNum} />
+        <List
+          todos={todos}
+          updateTodo={this.updateTodo}
+          delTodo={this.delTodo}
+        />
+        <Footer
+          total={total}
+          checkedNum={checkedNum}
+          handleCheckAll={this.handleCheckAll}
+          batchDel={this.batchDel}
+        />
       </div>
     );
   }
