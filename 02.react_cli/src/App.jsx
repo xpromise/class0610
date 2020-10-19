@@ -32,10 +32,14 @@ export default class App extends Component {
   render() {
     const { opacity } = this.state;
     return (
-      <div>
+      // <Fragment>
+      //   <h1 style={{ opacity }}>React学不会怎么办？</h1>
+      //   <button onClick={this.goDie}>不活了</button>
+      // </Fragment>
+      <>
         <h1 style={{ opacity }}>React学不会怎么办？</h1>
         <button onClick={this.goDie}>不活了</button>
-      </div>
+      </>
     );
   }
 }
