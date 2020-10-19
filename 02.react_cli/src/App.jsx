@@ -1,91 +1,74 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
-// 受控（Control）组件：通过state和onChange事件来收集表单数据的组件
+import Child from "./Child";
+
 export default class App extends Component {
-  state = {
-    username: "",
-    password: "",
-  };
+  constructor(props) {
+    super(props);
 
-  handleUsernameChange = (e) => {
-    this.setState({
-      username: e.target.value,
-    });
-  };
+    console.log("constructor");
+  }
 
-  handlePasswordChange = (e) => {
-    this.setState({
-      password: e.target.value,
-    });
-  };
+  // 可能会触发多次
+  UNSAFE_componentWillMount() {
+    console.log("componentWillMount");
+  }
 
-  // 封装一个复用的方法
-  // 高阶函数
-  handleChange = (key) => {
-    return (e) => {
-      this.setState({
-        [key]: e.target.value,
-      });
-    };
-  };
+  componentDidMount() {
+    // 发送请求、绑定事件、设置定时器等一次性任务
+    console.log("componentDidMount");
+  }
 
-  handleSubmit = (event) => {
-    // 禁止表单的默认行为
-    event.preventDefault();
-    // 收集表单数据
-    const { username, password } = this.state;
+  // 可能会触发多次
+  UNSAFE_componentWillReceiveProps() {
+    console.log("componentWillReceiveProps");
+  }
 
-    console.log(username, password);
+  // 性能优化
+  shouldComponentUpdate(nextState, nextProps) {
+    console.log("shouldComponentUpdate");
+    // 决定组件是否更新
+    // 返回值true，代表要更新
+    // 返回值false，代表不更新
+    // 决定组件要不要更新？看数据（state，props）是否发生变化
+    // 只要state，props有一个发生变化，就要更新
+    console.log(this.state);
+    console.log(this.props);
+
+    return true;
+  }
+
+  // 可能会触发多次
+  UNSAFE_componentWillUpdate() {
+    console.log("componentWillUpdate");
+  }
+
+  componentDidUpdate() {
+    console.log("componentDidUpdate");
+  }
+
+  componentWillUnmount() {
+    // 收尾工作；清除定时器，解绑事件等 --> 防止内存泄漏
+    console.log("componentWillUnmount");
+  }
+
+  update = () => {
+    // this.setState({});
+    // this.forceUpdate(() => {
+    //   return {};
+    // });
+
+    // ReactDOM.unmountComponentAtNode(document.getElementById("root"));
   };
 
   render() {
-    const { username, password } = this.state;
-
+    console.log("render");
     return (
-      <form onSubmit={this.handleSubmit}>
-        用户名:
-        <input
-          value={username}
-          // onChange={this.handleUsernameChange}
-          onChange={this.handleChange("username")}
-          type="text"
-        />
-        密码:
-        <input
-          value={password}
-          // onChange={this.handlePasswordChange}
-          onChange={this.handleChange("password")}
-          type="password"
-        />
-        <button type="submit">登录</button>
-      </form>
+      <div onClick={this.update}>
+        App..
+        <Child />
+      </div>
     );
   }
 }
-
-// export default class App extends Component {
-//   usernameRef = React.createRef();
-//   passwordRef = React.createRef();
-
-//   handleSubmit = (event) => {
-//     // 禁止表单的默认行为
-//     event.preventDefault();
-//     // 收集表单数据
-
-//     // 不建议使用
-//     const username = this.usernameRef.current.value;
-//     const password = this.passwordRef.current.value;
-
-//     console.log(username, password);
-//   };
-
-//   render() {
-//     return (
-//       <form onSubmit={this.handleSubmit}>
-//         用户名: <input ref={this.usernameRef} type="text" />
-//         密码: <input ref={this.passwordRef} type="password" />
-//         <button type="submit">登录</button>
-//       </form>
-//     );
-//   }
-// }
