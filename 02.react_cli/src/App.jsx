@@ -1,45 +1,38 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import axios from 'axios';
 
 export default class App extends Component {
-  state = {
-    opacity: 1,
-  };
 
-  componentDidMount() {
-    this.timeId = setInterval(() => {
-      const { opacity } = this.state;
+  async componentDidMount() {
+    try {
+      const result = await axios({
+        url: '/',
+        /*
+          GET    查
+          POST   增
+          PUT    改（全部修改）
+          PATCH  改（局部修改）
+          DELETE
+        */
+        method: 'GET', 
+      })
 
-      let newOpacity = opacity - 0.01;
-      if (newOpacity <= 0) {
-        newOpacity = 1;
-      }
+      console.log(result);
+      //  .then()
+      //  .catch()
+    } catch (e) {
+      // 处理错误
+      console.log(e);
+    }
 
-      this.setState({
-        opacity: newOpacity,
-      });
-    }, 1000 / 60);
   }
-
-  componentWillUnmount() {
-    clearInterval(this.timeId);
-  }
-
-  goDie = () => {
-    ReactDOM.unmountComponentAtNode(document.getElementById("root"));
-  };
 
   render() {
-    const { opacity } = this.state;
     return (
-      // <Fragment>
-      //   <h1 style={{ opacity }}>React学不会怎么办？</h1>
-      //   <button onClick={this.goDie}>不活了</button>
-      // </Fragment>
-      <>
-        <h1 style={{ opacity }}>React学不会怎么办？</h1>
-        <button onClick={this.goDie}>不活了</button>
-      </>
+      <div>
+        <h1>loading...</h1>
+        <h1>most star repo is xxx</h1>
+      </div>
     );
   }
 }
