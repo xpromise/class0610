@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
+}
+html,
+body {
+  height: 100%;
+  background-color: #ccc;
+}
+
+.header {
+  height: 100px;
+  background-color: #fff;
+}
+
+/* css选择器解析顺序：从右往左 */
+.header-list {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 30px;
+}
+
+.header-list a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.header-list a.active {
+  color: skyblue;
+}

@@ -1,91 +1,84 @@
 import React, { Component } from "react";
 import {
   BrowserRouter as Router,
-  HashRouter,
-  Link,
   NavLink,
-  Route,
   Switch,
-  Redirect,
+  Route,
 } from "react-router-dom";
 
 import Home from "./pages/Home";
-import About from "./pages/About";
+import Pins from "./pages/Pins";
+import Topics from "./pages/Topics";
+import Books from "./pages/Books";
+import Events from "./pages/Events";
 
-/*
-  react-router-dom库向外暴露n个组件
-    BrowserRouter history模式
-    HashRouter    hash模式
-      要求：所有路由组件都必须是他们的子组件（必须是嵌套关系）
-*/
+import routes from "./router";
+
+import "./App.css";
 
 export default class App extends Component {
   render() {
     return (
-      <HashRouter>
-        <div className="row">
-          <div className="col-xs-offset-2 col-xs-8">
-            <div className="page-header">
-              <h2>React Router Demo</h2>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-xs-2 col-xs-offset-2">
-            <div className="list-group">
-              {/* 
-                Link和NavLink
-                  公共点：
-                    1. 能够更新浏览器历史记录
-                    2. 不会刷新不会发送请求
-                  不同点：
-                    NavLink会给点击的元素添加一个active类名
-                    
-                如果需要给选中的元素一个特殊的样式就用NavLink
-                如果不需要就用Link
-              */}
-              <NavLink
-                className="list-group-item"
-                // activeClassName="my-active" // 修改选中的类的名称
-                to="/about"
-              >
-                About
+      <Router>
+        <header className="header">
+          <ul className="header-list">
+            {routes.map((route) => {
+              return (
+                <li key={route.path}>
+                  <NavLink to={route.path} exact={route.exact}>
+                    {route.title}
+                  </NavLink>
+                </li>
+              );
+            })}
+
+            {/* <li>
+              <NavLink to="/" exact>
+                首页
               </NavLink>
-              <NavLink
-                className="list-group-item"
-                // activeClassName="my-active"
-                to="/home"
-              >
-                Home
+            </li>
+            <li>
+              <NavLink to="/pins" exact>
+                沸点
               </NavLink>
-            </div>
-          </div>
-          <div className="col-xs-6">
-            <div className="panel">
-              <div className="panel-body">
-                {/* 
-                  Switch 切换路由组件显示：只让其中一个路由组件生效（第一个）
-                  Route 根据路径的变化，看是否匹配path，匹配上就显示component对应的组件
-                  Redirect 能匹配所有路径，重定向到to
-                */}
-                <Switch>
-                  <Route
-                    path="/home"
-                    // exact
-                    component={Home}
-                  />
-                  <Route
-                    path="/about"
-                    // exact
-                    component={About}
-                  />
-                  <Redirect to="/home" />
-                </Switch>
-              </div>
-            </div>
-          </div>
-        </div>
-      </HashRouter>
+            </li>
+            <li>
+              <NavLink to="/topics" exact>
+                话题
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/books" exact>
+                小册
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/events" exact>
+                活动
+              </NavLink>
+            </li> */}
+          </ul>
+        </header>
+        <section>
+          <Switch>
+            {routes.map((route) => {
+              return (
+                <Route
+                  path={route.path}
+                  exact={route.exact}
+                  component={route.component}
+                  key={route.path}
+                />
+              );
+            })}
+            {/* <Route path="/" exact component={Home} />
+            <Route path="/pins" exact component={Pins} />
+            <Route path="/books" exact component={Books} />
+            <Route path="/topics" exact component={Topics} />
+            <Route path="/events" exact component={Events} /> */}
+          </Switch>
+        </section>
+      </Router>
     );
   }
 }
