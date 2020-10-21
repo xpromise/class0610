@@ -22,7 +22,7 @@ import About from "./pages/About";
 export default class App extends Component {
   render() {
     return (
-      <Router>
+      <HashRouter>
         <div className="row">
           <div className="col-xs-offset-2 col-xs-8">
             <div className="page-header">
@@ -85,7 +85,7 @@ export default class App extends Component {
             </div>
           </div>
         </div>
-      </Router>
+      </HashRouter>
     );
   }
 }
