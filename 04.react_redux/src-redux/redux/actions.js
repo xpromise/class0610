@@ -2,7 +2,6 @@
   用来创建action对象的工厂函数模块
     action：{type: xxx, data: xxx}
 */
-import { INCREMENT, DECREMENT } from "./contants";
 
 // 要定义多少个action函数：看要对数据有多少种操作
 // function increment(num) {
@@ -11,7 +10,7 @@ import { INCREMENT, DECREMENT } from "./contants";
 //     data: num // 参与更新的数据
 //   }
 // }
-export const increment = (num) => ({ type: INCREMENT, data: num });
+export const increment = (num) => ({ type: "increment", data: num });
 
 // function decrement(num) {
 //   return {
@@ -20,4 +19,4 @@ export const increment = (num) => ({ type: INCREMENT, data: num });
 //   }
 // }
 
-export const decrement = (num) => ({ type: DECREMENT, data: num });
+export const decrement = (num) => ({ type: "decrement", data: num });
