@@ -1,3 +1,4 @@
+import { combineReducers } from "redux";
 import { ADD_COMMENT, DEL_COMMENT } from "./contants";
 
 const initComments = [
@@ -26,4 +27,17 @@ function comments(prevState = initComments, action) {
   }
 }
 
-export default comments;
+function users(prevState = {}, action) {
+  switch (action.type) {
+    default:
+      return prevState;
+  }
+}
+
+// export default comments;
+// combineReducers整合多个reducer函数为一个
+// 并且redux保存的值就是一个{ comments, users }
+export default combineReducers({
+  comments,
+  users
+})

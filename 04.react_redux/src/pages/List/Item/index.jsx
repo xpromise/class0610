@@ -1,12 +1,19 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { delComment } from "../../../redux/actions";
 
-export default class Item extends Component {
+class Item extends Component {
+  del = () => {
+    this.props.delComment(this.props.comment.id);
+  };
+
   render() {
     const { name, content } = this.props.comment;
     return (
       <li className="list-group-item">
         <div className="handle" style={{ border: "none" }}>
           <button
+            onClick={this.del}
             style={{
               backgroundColor: "transparent",
               outline: "none",
@@ -27,3 +34,5 @@ export default class Item extends Component {
     );
   }
 }
+
+export default connect(null, { delComment })(Item);

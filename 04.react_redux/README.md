@@ -1,68 +1,42 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# redux 开发流程
 
-## Available Scripts
+1. 首先下载包
+   yarn add redux react-redux redux-thunk redux-devtools-extension
 
-In the project directory, you can run:
+2. 定义 redux 四个模块
 
-### `yarn start`
+- store
+- actions
+- reducers
+- contants
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+首先可以确定写死的是 store 模块，其他模块要根据需求去完成
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+3. 使用 react-redux
+   在 index.js 中使用 Provider 组件
+   <Provider store={store}>
+    <App />
+   </Provider>
 
-### `yarn test`
+以上就是 redux 的准备工作
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. 分析需求
 
-### `yarn build`
+- 根据实际需求分析有哪些数据要存储在 redux 中（看数据有没有多个组件使用）
+- 分析对数据有多少种操作行为
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+5. 定义 actions
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- 根据对数据的操作行为来定义 action 函数
+  - 如果要发送请求就定义异步 action，否则就是同步 action
+  - 异步 action 往往都需要一个同步 action 来生成 action 对象
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+6. 定义 reducers
 
-### `yarn eject`
+- 根据 actions 操作类型，定义 case 语句，来对数据进行计算，生成 newState
+- reducers 需要一个初始化值，作为第一个参数 prevState 的默认值
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+7. 组件使用
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- 通过 connect 高阶组件给组件传递 redux 的数据和更新数据的方法
+- 组件通过 ths.props.xxx 使用
