@@ -19,16 +19,5 @@ export const increment = (num) => ({ type: INCREMENT, data: num });
 //     data: num // 参与更新的数据
 //   }
 // }
-// 同步action返回值是一个action对象
-export const decrement = (num) => ({ type: DECREMENT, data: num });
 
-// 异步action返回值是一个函数，函数中执行异步代码
-export const incrementAsync = (num) => {
-  return (dispatch) => {
-    // 执行异步代码
-    setTimeout(() => {
-      const action = increment(num);
-      dispatch(action);
-    }, 1000);
-  };
-};
+export const decrement = (num) => ({ type: DECREMENT, data: num });

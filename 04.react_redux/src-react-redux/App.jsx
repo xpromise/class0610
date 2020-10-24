@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { increment, decrement, incrementAsync } from "./redux/actions";
+import { increment, decrement } from "./redux/actions";
 
 class App extends Component {
   state = {
@@ -30,7 +30,9 @@ class App extends Component {
   };
 
   incrementAsync = () => {
-    this.props.incrementAsync(this.state.num);
+    setTimeout(() => {
+      this.props.increment(this.state.num);
+    }, 1000);
   };
 
   // componentDidMount() {
@@ -101,5 +103,4 @@ class App extends Component {
 export default connect((state) => ({ count: state }), {
   increment,
   decrement,
-  incrementAsync,
 })(App);
