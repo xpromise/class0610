@@ -1,84 +1,24 @@
-import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  NavLink,
-  Switch,
-  Route,
-} from "react-router-dom";
+import React from "react";
 
-import Home from "./pages/Home";
-import Pins from "./pages/Pins";
-import Topics from "./pages/Topics";
-import Books from "./pages/Books";
-import Events from "./pages/Events";
+export default function App() {
+  /*
+    React.useState(0) 用来给工厂函数组件使用state
+    const [state, setState] = React.useState(defaultValue)
+      state 就是状态数据
+      setState 就是更新状态数据的方法
+      defaultValue 就是状态数据的初始化值
+  */
 
-import routes from "./router";
+  const [count, setCount] = React.useState(0);
 
-import "./App.css";
+  const handleClick = () => {
+    setCount(count + 1);
+  };
 
-export default class App extends Component {
-  render() {
-    return (
-      <Router>
-        <header className="header">
-          <ul className="header-list">
-            {routes.map((route) => {
-              return (
-                <li key={route.path}>
-                  <NavLink to={route.path} exact={route.exact}>
-                    {route.title}
-                  </NavLink>
-                </li>
-              );
-            })}
-
-            {/* <li>
-              <NavLink to="/" exact>
-                首页
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/pins" exact>
-                沸点
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/topics" exact>
-                话题
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/books" exact>
-                小册
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/events" exact>
-                活动
-              </NavLink>
-            </li> */}
-          </ul>
-        </header>
-        <section>
-          <Switch>
-            {routes.map((route) => {
-              return (
-                <Route
-                  path={route.path}
-                  exact={route.exact}
-                  component={route.component}
-                  key={route.path}
-                />
-              );
-            })}
-            {/* <Route path="/" exact component={Home} />
-            <Route path="/pins" exact component={Pins} />
-            <Route path="/books" exact component={Books} />
-            <Route path="/topics" exact component={Topics} />
-            <Route path="/events" exact component={Events} /> */}
-          </Switch>
-        </section>
-      </Router>
-    );
-  }
+  return (
+    <div>
+      <p>count: {count}</p>
+      <button onClick={handleClick}>按钮</button>
+    </div>
+  );
 }
