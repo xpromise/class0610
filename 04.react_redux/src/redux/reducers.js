@@ -1,21 +1,29 @@
-/*
-  用来根据previousState和action来计算生成newState
-*/
-import { INCREMENT, DECREMENT } from "./contants";
-// reducer函数是纯函数
-// redux为了获取状态的初始值，一上来会调用一次count方法
-// 调用时第一个参数是 undefined {type: xxx}
-function count(prevState = 0, action) {
-  console.log(prevState, action);
-  
+import { ADD_COMMENT, DEL_COMMENT } from "./contants";
+
+const initComments = [
+  {
+    id: 1,
+    name: "huahua",
+    content: "i like jingge",
+  },
+  {
+    id: 2,
+    name: "jingge",
+    content: "i like yangge",
+  },
+];
+
+// reducers函数名称就是要管理的数据名称
+// prevState的默认值就是将来状态的初始化值（因为一上来reducer会被调用，并传入undefined）
+function comments(prevState = initComments, action) {
   switch (action.type) {
-    case INCREMENT: 
-      return prevState + action.data;
-    case DECREMENT:
-      return prevState - action.data;
+    case ADD_COMMENT:
+      return [action.data, ...prevState];
+    case DEL_COMMENT:
+      return prevState.filter((comment) => comment.id !== action.data);
     default:
       return prevState;
   }
 }
 
-export default count;
+export default comments;
