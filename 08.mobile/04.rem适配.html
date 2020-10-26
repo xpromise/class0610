@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./flexible.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .box1 {
+        float: left;
+        /* width: 187.5px; */
+        width: 50rem;
+        height: 333.5px;
+        background-color: pink;
+      }
+      .box2 {
+        float: right;
+        width: 50rem;
+        height: 333.5px;
+        background-color: deeppink;
+      }
+      .box3 {
+        /* 
+          px如何转化为rem单位
+            100px --> ?rem
+
+            1rem = 3.75px
+            xrem = 100px
+
+            x * 3.75 = 100
+            x = 100 / 3.75
+
+            px / 3.75 就是rem的值  
+         */
+        float: left;
+        width: 26.667rem;
+        height: 100px;
+        background-color: hotpink;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <!-- <script>
+      function setUnit() {
+        const html = document.documentElement;
+        html.style.fontSize = html.clientWidth / 100 + "px";
+      }
+
+      setUnit();
+
+      window.onresize = setUnit;
+    </script> -->
+  </body>
+</html>
