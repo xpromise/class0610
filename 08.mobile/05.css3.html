@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>css3</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+      }
+      .box {
+        /* position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto; */
+
+        /* position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%); */
+
+        /* position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -100px;
+        margin-top: -100px; */
+
+        /* 缩放 */
+        /* transform: scale(0.5); */
+        /* transform: scale(0.5, 1); */
+        /* transform: scaleX(2); */
+
+        /* 旋转 */
+        /* transform: rotate(180deg); */
+        /* transform: rotateX(50deg); */
+
+        /* transform: translate3d(0, 0 ,0 ); */
+        /* transform: translateZ(1); */
+
+        /* transform: translateX(0);
+        transition: tranform 5s;  */
+        width: 200px;
+        height: 200px;
+        animation: move 5s linear 2s infinite alternate-reverse;
+        background-color: pink;
+      }
+
+      @keyframes move {
+        0% {
+          transform: translateX(0) rotate(0);
+          width: 200px;
+        }
+        50% {
+          transform: translateX(200px) rotate(180deg);
+          width: 500px;
+        }
+        100% {
+          transform: translateX(100px) rotate(0);
+          width: 100px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">111122223333</div>
+    <button id="btn">按钮</button>
+    <script>
+      document.getElementById("btn").onclick = function () {
+        document.querySelector(".box").style.transform = "translateX(100px)";
+      };
+    </script>
+  </body>
+</html>
