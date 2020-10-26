@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-image: url("./images/logo.png");
+        background-repeat: no-repeat;
+        background-size: 100%;
+      }
+      @media (-webkit-min-device-pixel-ratio: 2) {
+        .box {
+          background-image: url("./images/logo@2x.png");
+        }
+      }
+      @media (-webkit-min-device-pixel-ratio: 3) {
+        .box {
+          background-image: url("./images/logo@3x.png");
+        }
+      }
+    </style>
+  </head>
+  <!-- 
+  需求：1位图像素 = 1物理像素
+  条件：
+    dpr=1  1设备独立像素=1物理像素
+    图片分辨率是 200x200 -- 位图像素
+ -->
+  <body>
+    <div class="box"></div>
+  </body>
+</html>
