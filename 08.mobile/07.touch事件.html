@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>touch</title>
+  </head>
+  <body>
+    <script>
+      document.addEventListener("touchstart", function (e) {
+        console.log("touchstart", e);
+      });
+
+      document.addEventListener("touchmove", function (e) {
+        console.log("touchmove", e);
+      });
+
+      document.addEventListener("touchend", function (e) {
+        console.log("touchend", e);
+      });
+    </script>
+  </body>
+</html>

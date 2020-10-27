@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1px</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      /* .line {
+        margin-top: 50px;
+        width: 100%;
+        height: 1px;
+        background-color: pink;
+      }
+
+      @media (-webkit-min-device-pixel-ratio: 2) {
+        .line {
+          transform: scaleY(0.5);
+        }
+      }
+
+      @media (-webkit-min-device-pixel-ratio: 3) {
+        .line {
+          transform: scaleY(0.333333);
+        }
+      } */
+
+      .line {
+        position: relative;
+        margin-top: 50px;
+        width: 100%;
+        height: 200px;
+        background-color: pink;
+        /* border-bottom: 1px solid #000; */
+      }
+      .line::after {
+        position: absolute;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 1px;
+        width: 100%;
+        background-color: #000;
+      }
+
+      @media (-webkit-min-device-pixel-ratio: 2) {
+        .line::after {
+          transform: scaleY(0.5);
+        }
+      }
+
+      @media (-webkit-min-device-pixel-ratio: 3) {
+        .line::after {
+          transform: scaleY(0.333333);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="line"></div>
+  </body>
+</html>

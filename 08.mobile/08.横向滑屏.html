@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
+    />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+        overflow-x: hidden;
+      }
+      .box {
+        width: 300%;
+        height: 200px;
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      11111111111111111111111111111111111111111111111111111
+      22222222222222222222222222222222222222222222222222222
+      33333333333333333333333333333333333333333333333333333
+    </div>
+    <script>
+      /*
+          获取到 开始的位置startX 和 move的位置 endX
+          const distance = endX - startX;
+          if (distance > 0) {
+            从左往右滑动 
+            元素需要向右移动 left 、 transform: translateX(xx)
+          } else {
+            从右往左滑动
+            元素需要向左移动 left 、 transform: translateX(xx)
+          }
+      */
+
+      const box = document.querySelector(".box");
+
+      // 手触碰的启示位置
+      let startX = 0;
+      // box元素位移的起始位置
+      let targetX = 0;
+
+      // 运动的速度
+      const speed = 10;
+
+      box.addEventListener("touchstart", function (e) {
+        startX = e.changedTouches[0].clientX;
+      });
+
+      box.addEventListener("touchmove", function (e) {
+        const endX = e.changedTouches[0].clientX;
+        // 滑动的距离
+        const distance = endX - startX;
+
+        if (distance > 0) {
+          targetX += speed;
+        } else {
+          targetX -= speed;
+        }
+
+        box.style.transform = `translateX(${targetX}px)`;
+
+        startX = endX;
+      });
+    </script>
+  </body>
+</html>
