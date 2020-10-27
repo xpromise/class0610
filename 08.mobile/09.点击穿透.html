@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+    <script>
+      if ("addEventListener" in document) {
+        document.addEventListener(
+          "DOMContentLoaded",
+          function () {
+            FastClick.attach(document.body);
+          },
+          false
+        );
+      }
+      if (!window.Promise) {
+        document.writeln(
+          '<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' +
+            ">" +
+            "<" +
+            "/" +
+            "script>"
+        );
+      }
+    </script>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      .inner {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+      }
+      .outer {
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="inner">
+      <a href="http://www.atguigu.com">atguigu</a>
+    </div>
+    <div class="outer"></div>
+    <script>
+      const outer = document.querySelector(".outer");
+      const inner = document.querySelector(".inner");
+
+      const allA = document.querySelectorAll("a");
+
+      outer.addEventListener("touchend", function () {
+        this.style.display = "none";
+      });
+
+      // document.addEventListener("click", function (e) {
+      //   e.preventDefault();
+      // });
+
+      // for (let i = 0; i < allA.length; i++) {
+      //   const a = allA[i];
+
+      //   a.addEventListener("touchend", function (e) {
+      //     location.href = this.href;
+      //   });
+      // }
+
+      // inner.addEventListener("click", function () {
+      //   console.log("inner~~~");
+      // });
+    </script>
+  </body>
+</html>
